@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 import { loggerMiddleware } from './middlewares/logger.js';
 import { router } from './routes/Router.js';
 import { baseUrl } from './utils/baseUrl.js';
+import { errorMiddleware } from './middlewares/error.js';
 
 const app = express();
 
