@@ -1,4 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
+import { baseUrl } from '../utils/baseUrl.js';
+import { port } from '../utils/port.js';
 
 const swaggerOptions = {
   definition: {
@@ -10,11 +12,11 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: 'http://localhost:3000/api/v1',
+        url: `http://localhost:${port}${baseUrl}`,
       },
     ],
   },
-  apis: ['./src/routes/*.ts'],
+  apis: ['./src/routes/*.js'],
 };
 
 export const swaggerDocsSetup = swaggerJsdoc(swaggerOptions);
