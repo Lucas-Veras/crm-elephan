@@ -1,12 +1,10 @@
 import { ploomesAPI } from '../config/axios.js';
 
 class PloomesService {
-  authHeaders = {
-    'User-Key': '',
-  };
+  static apiKey = '';
 
-  setApiKey(apiKey) {
-    this.authHeaders['User-Key'] = apiKey;
+  static setApiKey(apiKey) {
+    this.apiKey = apiKey;
   }
 
   static async authenticate(apiKey) {
@@ -15,6 +13,23 @@ class PloomesService {
         'User-Key': apiKey,
       },
     });
+  }
+
+  static async getContacts(email) {
+    let filter;
+
+    if (email) filter = `Email eq '${email}'`;
+
+    const response = await ploomesAPI.get('/Contacts', {
+      headers: {
+        'User-Key': this.apiKey,
+      },
+      params: {
+        $filter: filter,
+      },
+    });
+
+    return response.data.value;
   }
 }
 
