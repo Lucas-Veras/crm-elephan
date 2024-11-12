@@ -38,7 +38,7 @@ const contactRoutes = Router();
  *                   cpf:
  *                     type: string
  *                     example: "123.456.789-00"
- *                   dataNascimento:
+ *                   birthday:
  *                     type: string
  *                     format: date
  *                     example: "1990-01-01"
@@ -65,5 +65,56 @@ const contactRoutes = Router();
  *                   example: "Contato não encontrado"
  */
 contactRoutes.get('/contacts', ContacPloomesControler.getContacts);
+
+/**
+ * @swagger
+ * /contacts/{id}/deals:
+ *   get:
+ *     summary: Retorna os negócios de um contato
+ *     description: Retorna os negócios (deals) associados a um contato
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: O ID do contato para o qual deseja obter os negócios.
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Retorna os negócios do contato
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                     description: O ID do negócio.
+ *                     example: "12345"
+ *                   title:
+ *                     type: string
+ *                     description: O título do negócio.
+ *                     example: "Negócio de Vendas"
+ *                   amount:
+ *                     type: number
+ *                     format: float
+ *                     description: O valor do negócio.
+ *                     example: 5000.00
+ *                   status:
+ *                     type: string
+ *                     description: O status do negócio.
+ *                     example: "Em andamento"
+ *                   startDate:
+ *                     type: string
+ *                     format: date
+ *                     description: A data de início do negócio.
+ *                     example: "2024-11-10"
+ */
+contactRoutes.get(
+  '/contacts/:id/deals',
+  ContacPloomesControler.getDealsByContactId
+);
 
 export default contactRoutes;

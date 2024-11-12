@@ -6,8 +6,18 @@ export const contactsParser = (contact) => {
     email: contact.Email,
     cpf: contact.CPF,
     cnpj: contact.CNPJ,
-    dataNascimento: contact.Birthday,
+    birthday: contact.Birthday,
     createAt: contact.CreateDate,
     updateAt: contact.LastUpdateDate,
+    Company:
+      contact.Company && Object.keys(contact.Company).length > 0
+        ? {
+            id: contact.Company.Id,
+            name: contact.Company.Name,
+            cnpj: contact.Company.CNPJ,
+            createAt: contact.Company.CreateDate,
+            updateAt: contact.Company.LastUpdateDate,
+          }
+        : null,
   };
 };

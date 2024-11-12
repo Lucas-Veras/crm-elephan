@@ -26,6 +26,22 @@ class PloomesService {
       },
       params: {
         $filter: filter,
+        $expand: 'Company',
+      },
+    });
+
+    return response.data.value;
+  }
+
+  static async getDealsByContactId(id) {
+    let filter = `ContactId eq ${id}`;
+    const response = await ploomesAPI.get(`/Deals`, {
+      headers: {
+        'User-Key': this.apiKey,
+      },
+      params: {
+        $filter: filter,
+        $expand: 'Status',
       },
     });
 
