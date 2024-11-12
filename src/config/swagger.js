@@ -1,6 +1,6 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import { baseUrl } from '../utils/baseUrl.js';
-import { port } from '../utils/port.js';
+import config from './enviroments.js';
 
 const swaggerOptions = {
   definition: {
@@ -12,7 +12,7 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: `http://localhost:${port}${baseUrl}`,
+        url: `http://localhost:${config.PORT}${baseUrl}`,
       },
     ],
   },
