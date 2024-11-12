@@ -1,5 +1,4 @@
 import PloomesService from '../services/ploomesService.js';
-import { BadRequestError } from '../utils/api-erros.js';
 
 class AuthPloomesController {
   static connect = async (req, res, next) => {
@@ -7,7 +6,10 @@ class AuthPloomesController {
       const { apiKey } = req.query;
 
       if (!apiKey) {
-        throw new BadRequestError('Chave não informada');
+        return res.status(400).json({
+          statusCode: 400,
+          message: 'Chave não informada',
+        });
       }
 
       await PloomesService.authenticate(apiKey);

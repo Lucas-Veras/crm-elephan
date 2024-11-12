@@ -1,7 +1,6 @@
 import { contactsParser } from '../parsers/contactParser.js';
-import { dealsParser } from '../parsers/dealsParser.js';
+import { dealParser } from '../parsers/dealParser.js';
 import PloomesService from '../services/ploomesService.js';
-import { BadRequestError } from '../utils/api-erros.js';
 
 class ContacPloomesControler {
   static getContacts = async (req, res, next) => {
@@ -40,7 +39,7 @@ class ContacPloomesControler {
         });
       }
 
-      const dealsParsed = deals.map(dealsParser);
+      const dealsParsed = deals.map(dealParser);
 
       return dealsParsed;
     } catch (error) {

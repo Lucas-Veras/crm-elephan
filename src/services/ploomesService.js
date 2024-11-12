@@ -47,6 +47,34 @@ class PloomesService {
 
     return response.data.value;
   }
+
+  static async getAllPipelines() {
+    const response = await ploomesAPI.get('/Deals@Pipelines', {
+      headers: {
+        'User-Key': this.apiKey,
+      },
+    });
+    return response.data.value;
+  }
+
+  static async getDealsByPipeline(pipelineId, statusId) {
+    let filter = `PipelineId eq ${pipelineId}`;
+
+    if (statusId) {
+      filter += ` and StatusId eq ${statusId}`;
+    }
+    const response = await ploomesAPI.get('/Deals', {
+      headers: {
+        'User-Key': this.apiKey,
+      },
+      params: {
+        $filter: filter,
+        $expand: 'Status',
+      },
+    });
+
+    return response.data.value;
+  }
 }
 
 export default PloomesService;

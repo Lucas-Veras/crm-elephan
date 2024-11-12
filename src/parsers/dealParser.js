@@ -1,4 +1,4 @@
-export const dealsParser = (deal) => {
+export const dealParser = (deal) => {
   return {
     id: deal.Id,
     title: deal.Title,
