@@ -57,7 +57,7 @@ class PloomesService {
     return response.data.value;
   }
 
-  static async getDealsByPipeline(pipelineId, statusId) {
+  static async getDealsByPipelineId(pipelineId, statusId) {
     let filter = `PipelineId eq ${pipelineId}`;
 
     if (statusId) {

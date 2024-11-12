@@ -3,12 +3,12 @@ import { pipelineParser } from '../parsers/pipelineParser.js';
 import PloomesService from '../services/ploomesService.js';
 
 class PipelinePloomesController {
-  static getAllPipelines = async (req, res) => {
+  static getAllPipelines = async (req, res, next) => {
     try {
       const pipeline = await PloomesService.getAllPipelines();
 
       if (pipeline.length === 0) {
-        res.status(404).json({
+        return res.status(404).json({
           statusCode: 404,
           message: 'Pipelines não encontradas',
         });
@@ -22,18 +22,15 @@ class PipelinePloomesController {
     }
   };
 
-  static getDealsByPipeline = async (req, res) => {
+  static getDealsByPipelineId = async (req, res, next) => {
     try {
       const { statusId } = req.query;
-      const { pipelineId } = req.params;
+      const { id } = req.params;
 
-      const deals = await PloomesService.getDealsByPipeline(
-        pipelineId,
-        statusId
-      );
-
+      const deals = await PloomesService.getDealsByPipelineId(id, statusId);
+      console.log('fberjferbf', deals);
       if (deals.length === 0) {
-        res.status(404).json({
+        return res.status(404).json({
           statusCode: 404,
           message: 'Deals não encontrados',
         });

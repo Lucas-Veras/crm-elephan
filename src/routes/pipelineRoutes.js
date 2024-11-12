@@ -136,8 +136,8 @@ pipelineRoutes.get('/pipelines', PipelinePloomesController.getAllPipelines);
  *                   example: "Erro ao tentar recuperar os deals"
  */
 pipelineRoutes.get(
-  '/pipelines/:pipelineId/deals',
-  PipelinePloomesController.getDealsByPipeline
+  '/pipelines/:id/deals',
+  PipelinePloomesController.getDealsByPipelineId
 );
 
 export default pipelineRoutes;
